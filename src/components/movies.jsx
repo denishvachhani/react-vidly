@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
-import Like from "./common/like";
+import MoviesTable from "../components/moviesTable";
 import Pagination from "./common/pagination";
 import { paginate } from "../utils/paginate";
 import ListGroup from "./common/listGroup";
@@ -72,42 +72,11 @@ class Movies extends Component {
           </div>
           <div className="col">
             <h1>Showing {filtered.length} in the database</h1>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Title</th>
-                  <th scope="col">Stock</th>
-                  <th scope="col">Type</th>
-                  <th scope="col">Rate</th>
-                  <th />
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {movies.map(movie => (
-                  <tr key={movie._id}>
-                    <td>{movie.title}</td>
-                    <td>{movie.numberInStock}</td>
-                    <td>{movie.genre.name}</td>
-                    <td>{movie.dailyRentalRate}</td>
-                    <td>
-                      <Like
-                        onClick={() => this.handleLikeClick(movie)}
-                        like={movie.liked}
-                      />
-                    </td>
-                    <td>
-                      <button
-                        onClick={() => this.handleDelete(movie)}
-                        className="btn btn-danger btn-sm"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <MoviesTable
+              movies={movies}
+              onLike={this.handleLikeClick}
+              onDelete={this.handleDelete}
+            />
             <Pagination
               itemCount={filtered.length}
               pageSize={this.state.pageSize}

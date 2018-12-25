@@ -8,12 +8,13 @@ const ListGroup = props => {
     selectedItem,
     onItemSelect
   } = props;
+
   return (
     <ul className="list-group">
       {items.map(item => (
         <a
-          role="button"
           key={item[valueProperty]}
+          role="button"
           onClick={() => onItemSelect(item)}
           style={{ cursor: "pointer" }}
           className={

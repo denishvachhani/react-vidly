@@ -12,9 +12,8 @@ const ListGroup = props => {
   return (
     <ul className="list-group">
       {items.map(item => (
-        <a
+        <button
           key={item[valueProperty]}
-          role="button"
           onClick={() => onItemSelect(item)}
           style={{ cursor: "pointer" }}
           className={
@@ -22,7 +21,7 @@ const ListGroup = props => {
           }
         >
           {item[textProperty]}
-        </a>
+        </button>
       ))}
     </ul>
   );
